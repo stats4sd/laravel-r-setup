@@ -15,7 +15,7 @@ TODO: Add a link to deployment script...
 
 To get started: 
 
-1. require the package as a dev dependency: `composer require stats4sd/laravel-r-setup`.
+1. require the package as a dev dependency: `composer require stats4sd/laravel-r-setup --dev`.
 2. Run `php artisan rsetup r`. 
    
 This will create a new RStudio project with some example files in `scripts/R`.   
