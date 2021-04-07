@@ -1,5 +1,5 @@
 library(RMariaDB)
-libary(dotenv)
+library(dotenv)
 
 dotenv::load_dot_env("../../.env")
 
