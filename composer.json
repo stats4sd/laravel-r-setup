@@ -1,0 +1,38 @@
+{
+    "name": "stats4sd/laravel-r-setup",
+    "description": "A helper package to setup an R environment within a Laravel project.",
+    "keywords": ["laravel", "r"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dave Mills",
+            "email": "d.e.mills@stats4sd.org"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/console": "^8.0",
+        "illuminate/filesystem": "^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Stats4SD\\LaravelRSetup\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Stats4SD\\LaravelRSetup\\RSetupServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

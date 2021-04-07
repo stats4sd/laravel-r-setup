@@ -1,0 +1,19 @@
+---
+title: "Sample Document"
+output:
+  pdf_document:
+    toc: true
+params:
+  users: ""
+---
+
+R Markdown Example
+===================================
+
+This document is just a basic example of an R Markdown. It should be used to check that compiling to PDF can be done successfully via the commandline and from PHP.
+
+```{r}
+library(knitr)
+kable(params$users)
+
+```
