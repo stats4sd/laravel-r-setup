@@ -1,7 +1,9 @@
 # Example file - generates a test csv output file
 # This can be used to check that R can be run from CLI and from PHP via Symfony process.
+library('rmarkdown')
 library('dbplyr')
 library('dplyr')
+
 
 
 # include init script
