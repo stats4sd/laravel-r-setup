@@ -33,7 +33,7 @@ class SetupCommand extends Command
      */
     public function handle()
     {
-         if (static::hasMacro($this->argument('type'))) {
+        if (static::hasMacro($this->argument('type'))) {
             return call_user_func(static::$macros[$this->argument('type')], $this);
         }
 
@@ -62,7 +62,6 @@ class SetupCommand extends Command
 
         $this->info('Files copied to `scripts/R`. Starting renv installation');
         $this->installRenv();
-
     }
 
     /**
@@ -98,8 +97,8 @@ class SetupCommand extends Command
      */
     protected function handleProcess(Process $process)
     {
-        foreach($process as $type => $data) {
-            if($process::OUT === $type) {
+        foreach ($process as $type => $data) {
+            if ($process::OUT === $type) {
                 $this->info($data);
             } else {
                 $this->warn("error :- ".$data);
