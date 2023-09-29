@@ -88,7 +88,7 @@ class SetupCommand extends Command
     protected function setupRenvRepo()
     {
         $this->info("It will take a few minutes to setup renv repo, please wait...");
-        $result = Process::forever()->run('Rscript -e "install.packages(\'renv\', repos = \'http://cran.rstudio.com/\')"');
+        $result = Process::forever()->path('scripts/R')->run('Rscript -e "install.packages(\'renv\', repos = \'http://cran.rstudio.com/\')"');
 
         echo $result->output();
         echo $result->errorOutput();
@@ -103,7 +103,7 @@ class SetupCommand extends Command
     {
         $this->info("It will take a few minutes to install renv, please wait...");
 
-        $result = Process::forever()->run('Rscript -e "renv::install()"');
+        $result = Process::forever()->path('scripts/R')->run('Rscript -e "renv::install()"');
 
         echo $result->output();
         echo $result->errorOutput();
@@ -118,7 +118,7 @@ class SetupCommand extends Command
     {
         $this->info("It will take a few minutes to initialise renv, please wait...");
 
-        $result = Process::forever()->run('Rscript -e "renv::init()"');
+        $result = Process::forever()->path('scripts/R')->run('Rscript -e "renv::init()"');
 
         echo $result->output();
         echo $result->errorOutput();
