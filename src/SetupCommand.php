@@ -4,7 +4,7 @@ namespace Stats4SD\LaravelRSetup;
 
 use Illuminate\Console\Command;
 use InvalidArgumentException;
-use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Process;
 
 class SetupCommand extends Command
 {
@@ -61,7 +61,9 @@ class SetupCommand extends Command
         Presets\R::install();
 
         $this->info('Files copied to `scripts/R`. Starting renv installation');
+        $this->setupRenvRepo();
         $this->installRenv();
+        $this->initRenv();
     }
 
     /**
@@ -73,7 +75,38 @@ class SetupCommand extends Command
     {
         Presets\R::install();
         Presets\RMarkdown::install();
+        $this->setupRenvRepo();
         $this->installRenv();
+        $this->initRenv();
+    }
+
+    /**
+     * Setup renv repository
+     *
+     * @return void;
+     */
+    protected function setupRenvRepo()
+    {
+        $this->info("It will take a few minutes to setup renv repo, please wait...");
+        $result = Process::forever()->run('Rscript -e "install.packages(\'renv\', repos = \'http://cran.rstudio.com/\')"');
+
+        echo $result->output();
+        echo $result->errorOutput();
+    }
+
+    /**
+     * Install the Renv library to manage R library dependencies
+     *
+     * @return void;
+     */
+    protected function installRenv()
+    {
+        $this->info("It will take a few minutes to install renv, please wait...");
+
+        $result = Process::forever()->run('Rscript -e "renv::install()"');
+
+        echo $result->output();
+        echo $result->errorOutput();
     }
 
     /**
@@ -81,28 +114,14 @@ class SetupCommand extends Command
      *
      * @return void;
      */
-    protected function installRenv()
+    protected function initRenv()
     {
-        $initProcess = new Process(['Rscript', '-e', 'renv::init()'], base_path('scripts/R'));
-        $initProcess->start();
+        $this->info("It will take a few minutes to initialise renv, please wait...");
 
-        $this->handleProcess($initProcess);
+        $result = Process::forever()->run('Rscript -e "renv::init()"');
+
+        echo $result->output();
+        echo $result->errorOutput();
     }
 
-    /**
-     * Passes Symfony process outputs back to the user in real-time.
-     *
-     * @param Process $process
-     * @return void;
-     */
-    protected function handleProcess(Process $process)
-    {
-        foreach ($process as $type => $data) {
-            if ($process::OUT === $type) {
-                $this->info($data);
-            } else {
-                $this->warn("error :- ".$data);
-            }
-        }
-    }
 }
