@@ -13,7 +13,7 @@ class SetupCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'rsetup
+    protected $signature = 'stats4sd:rsetup
                     { type : The type of R project (r, rmarkdown) }
                     { --option=* : Pass an option to the preset command }';
 
