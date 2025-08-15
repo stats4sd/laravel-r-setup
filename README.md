@@ -1,3 +1,8 @@
+> [!WARNING]  
+> This repo was intended as a quick way for a Laravel developer to add a template R package in a subfolder. Internally, we have moved in the direction of using submodules, as usually different people are working on the R project vs the Laravel project. As such, this repo is no longer used, as instead we setup a separate R repo, then bring it in as a submodule to the Laravel app when needed.
+
+
+
 # Laravel R Setup
 
 This helper package can be used to quickly scaffold an R project within the main Laravel project.
